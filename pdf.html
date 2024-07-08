@@ -22,7 +22,7 @@
         .pdf-container {
             overflow: auto;
             width: 100%;
-            height: 600px; /* Adjust height as needed */
+            height: 600px;
         }
         .pdf-container embed,
         .pdf-container iframe {
@@ -37,20 +37,16 @@
         <h2 id="pdf-title">Embedded PDF Example</h2>
         <div class="pdf-container">
             <embed id="pdf-viewer" src="" type="application/pdf" />
-            <!-- Alternatively, you can use <iframe> -->
-            <!-- <iframe id="pdf-viewer" src=""></iframe> -->
+            <!-- Or use iframe -->
+            <!-- <iframe id="pdf-viewer" src="" width="100%" height="600px" style="border:none;"></iframe> -->
         </div>
-        <p>This is a sample HTML page with an embedded PDF file.</p>
     </div>
-    <!-- Scripts and additional includes -->
     <script>
-        // Function to set PDF file dynamically
         function setPdfFile(filename, title) {
             document.getElementById('pdf-title').innerText = title;
             document.getElementById('pdf-viewer').src = filename;
         }
 
-        // Function to parse URL parameters
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -58,11 +54,9 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // Get parameters from URL
         var pdfFile = getUrlParameter('file');
         var pdfTitle = getUrlParameter('title');
         
-        // Call the function to set the PDF
         setPdfFile(pdfFile, pdfTitle);
     </script>
 </body>
