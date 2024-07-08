@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded PDF Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .pdf-container {
+            overflow: auto;
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+        }
+        .pdf-container embed,
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="pdf-title">Embedded PDF Example</h2>
+        <div class="pdf-container">
+            <embed id="pdf-viewer" src="" type="application/pdf" />
+            <!-- Alternatively, you can use <iframe> -->
+            <!-- <iframe id="pdf-viewer" src=""></iframe> -->
+        </div>
+        <p>This is a sample HTML page with an embedded PDF file.</p>
+    </div>
+    <!-- Scripts and additional includes -->
+    <script>
+        // Function to set PDF file dynamically
+        function setPdfFile(filename, title) {
+            document.getElementById('pdf-title').innerText = title;
+            document.getElementById('pdf-viewer').src = filename;
+        }
+
+        // Function to parse URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Get parameters from URL
+        var pdfFile = getUrlParameter('file');
+        var pdfTitle = getUrlParameter('title');
+        
+        // Call the function to set the PDF
+        setPdfFile(pdfFile, pdfTitle);
+    </script>
+</body>
+</html>
